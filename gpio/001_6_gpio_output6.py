@@ -1,7 +1,6 @@
 '''
 gpio17에 led 연결
 10 단계로 점점 밝아 지도록 제어 <- sleep 시간 조정
-test2
 '''
 import RPi.GPIO as GPIO
 import time
