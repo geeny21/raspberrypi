@@ -29,14 +29,14 @@ GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # 내부 풀다�
 
 # Event 방식으로 Rising edge 감지
 # bouncetime : 200ms 이내에 다시 이벤트 발생하지 않도록 설정
-# rising edge를 검출하고자 GPIO.RASIONG으로 설정할 경우, Press Release 시에도 callback이 발생함
+# rising edge를 검출하고자 GPIO.RASIONG으로 설정할 경우, Press 시에 callback이 발생함
 #GPIO.add_event_detect(BUTTON_GPIO, GPIO.RISING, callback=button_callback, bouncetime=200)
 
-# falling edge를 검출하고자 GPIO.FALLING으로 설정할 경우, Press 시에 callback이 발생함
-#GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, callback=button_callback, bouncetime=200)
+# falling edge를 검출하고자 GPIO.FALLING으로 설정할 경우, Release 시에 callback이 발생함
+GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, callback=button_callback, bouncetime=200)
 
 # rasing/falling edge를 모두 검출하고자 GPIO.BOTH으로 설정할 경우, Press Release 시에도 callback이 발생함
-GPIO.add_event_detect(BUTTON_GPIO, GPIO.BOTH, callback=button_callback, bouncetime=200)
+#GPIO.add_event_detect(BUTTON_GPIO, GPIO.BOTH, callback=button_callback, bouncetime=200)
 
 print("Press the button connected to GPIO5 (Ctrl+C to exit)")
 

@@ -15,11 +15,11 @@ GPIO.setup(led_pin, GPIO.OUT)
 try :
     while True :
         GPIO.output(led_pin, True)
-        print('Led on')
+        #print('Led on')
         time.sleep(d_time*9)
 
         GPIO.output(led_pin, False)
-        print('Led off')
+        #print('Led off')
         time.sleep(d_time)
 
 except KeyboardInterrupt :
