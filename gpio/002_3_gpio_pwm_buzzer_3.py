@@ -1,7 +1,7 @@
 '''
 수동 부저로 PWM 소리 내기
 도래미파솔라시도 연수
-부저 핀 : GPIO28
+부저 핀 : GPIO26
 
 주파수
 C (do) - 261.63 Hz
@@ -33,7 +33,7 @@ NOTE_FREQ = {
 melody = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C5']
 
 # 3. 부저가 연결된 GPIO 핀 번호
-BUZZER_PIN = 28
+BUZZER_PIN = 26
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUZZER_PIN, GPIO.OUT)
@@ -48,7 +48,7 @@ try:
         time.sleep(0.5)       # 0.5초 연주
         pwm.stop()
         time.sleep(0.1)       # 음 사이 간격
-        
+
 except KeyboardInterrupt:
     print("Key interrupt")
 except :
