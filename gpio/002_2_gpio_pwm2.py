@@ -28,6 +28,8 @@ try:
         pwm.ChangeDutyCycle(duty)
         print(f"Duty Cycle: {duty}%")
         time.sleep(0.1)
+except KeyboardInterrupt:
+    print("Key interrupt")
 except :
     print("An error occurred or program interrupted.")
 finally:
