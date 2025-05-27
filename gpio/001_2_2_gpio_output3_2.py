@@ -13,7 +13,7 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(led_pin, GPIO.OUT)
 
-try :
+try :       # 개발자가 작성하고자 하는 목적 코드들
     while True :
         for pin in led_pin:
             GPIO.output(pin, True)
@@ -25,7 +25,10 @@ try :
             print(f'Led {pin} off')
             time.sleep(1.0) 
 
-except KeyboardInterrupt :
+except KeyboardInterrupt :  # Ctrl+C 누르면 KeyboardInterrupt 예외 발생  
     print("Key interrupt")
-GPIO.cleanup()
+except :    # 오류로 인해 종려하는 경우
+    pass    # 오류 처리 코드
+finally :   # 종료하는  모든 경우(정상/오류로 인한 종료)에 실행되는 코드
+    GPIO.cleanup()
 print('Program end')
