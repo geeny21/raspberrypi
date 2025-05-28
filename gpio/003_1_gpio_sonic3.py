@@ -4,7 +4,11 @@
 Trig : GPIO23
 Echo : GPIO24 (3.3V : Logic Level Shifter 필요)
 
-장애물과의 거리를 cm 단위로 측정하여 출력합니다.
+장애물과의 거리가 20cm 이하이면 LED 점등하고
+메시지 출력  
+단, 메시지는 상태변화시 한번만씩만 출력
+
+LED : GPIO17
 '''
 import RPi.GPIO as GPIO
 import time
@@ -12,13 +16,15 @@ import time
 # GPIO 핀 설정
 TRIG_PIN = 23
 ECHO_PIN = 24
+LED_PIN = 17
 
 # GPIO 모드 설정
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(TRIG_PIN, GPIO.OUT)
 GPIO.setup(ECHO_PIN, GPIO.IN)
 
-# 초음파 센서로부터 거리를 측정하는 함수
+GPIO.setup(LED_PIN, GPIO.OUT)
+
 def get_distance():
     # 초음파 신호 전송
     GPIO.output(TRIG_PIN, True)
@@ -41,13 +47,28 @@ def get_distance():
 
     return distance
 
+# LED 상태
+led_state = False
+print("LED OFF")
+
 try:
     print("초음파 센서 작동 시작")
     while True:
         distance = get_distance()
+        if distance <= 20:
+            if not led_state:
+                GPIO.output(LED_PIN, True)
+                print("LED ON")
+                led_state = True
+        else:
+            if led_state:
+                led_state = False   
+                GPIO.output(LED_PIN, False)
+                print("LED OFF")
+
+        # 거리 출력
         print(f"거리: {distance} cm")
-        time.sleep(1)  # 1초 대기
-        
+        time.sleep(0.5)  # 0.5초 대기
 except KeyboardInterrupt:   
     print("keyboard interrupt")
 except Exception as e:
