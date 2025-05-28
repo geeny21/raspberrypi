@@ -10,6 +10,9 @@
 
 Duty Cycle:
 5% -> 7.5% -> 10%
+
+서보모터에 따라 동작 duty cycle 범위가 다를 수 있다.
+2.5 ~ 12.5% 범위로 동작하는 서보모터도 있다.
 '''
 
 import RPi.GPIO as GPIO
