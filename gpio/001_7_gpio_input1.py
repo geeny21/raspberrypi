@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 import time
 
 # GPIO setup
-BUTTON_GPIO = 5
+BUTTON_GPIO = 6
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # 내부 풀다운 저항 사용
 

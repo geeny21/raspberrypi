@@ -3,7 +3,7 @@
 이벤트 기반 동작
 0.1초 단위로 상태를 확인
 Ctrl+C 누르면 프로그램 종료
-푸시버튼 : BCM gpio5
+푸시버튼 : BCM gpio6
         내부 pull-down 저항 사용
 '''
 import RPi.GPIO as GPIO
@@ -16,14 +16,15 @@ num = 0
 def button_callback(channel):
     global num
     num += 1
-    if GPIO.input(channel) == GPIO.HIGH:
-        print("Button Pressed")
-    else:
-        print("Button Released")
+    # print(channel,'num added', GPIO.input(channel))
+    # if GPIO.input(channel) == GPIO.HIGH:
+    #     print("Button Pressed")
+    # else:
+    #     print("Button Released")
     print("Button Pressed count : ", num)
 
 # GPIO setup
-BUTTON_GPIO = 5
+BUTTON_GPIO = 6
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # 내부 풀다운 저항 사용
 
@@ -33,12 +34,13 @@ GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # 내부 풀다�
 #GPIO.add_event_detect(BUTTON_GPIO, GPIO.RISING, callback=button_callback, bouncetime=200)
 
 # falling edge를 검출하고자 GPIO.FALLING으로 설정할 경우, Release 시에 callback이 발생함
-GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, callback=button_callback, bouncetime=200)
+#GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, callback=button_callback, bouncetime=200)
+GPIO.add_event_detect(BUTTON_GPIO, GPIO.RISING, callback=button_callback, bouncetime=200)
 
 # rasing/falling edge를 모두 검출하고자 GPIO.BOTH으로 설정할 경우, Press Release 시에도 callback이 발생함
 #GPIO.add_event_detect(BUTTON_GPIO, GPIO.BOTH, callback=button_callback, bouncetime=200)
 
-print("Press the button connected to GPIO5 (Ctrl+C to exit)")
+print("Press the button connected to GPIO6 (Ctrl+C to exit)")
 
 try:
     while True:

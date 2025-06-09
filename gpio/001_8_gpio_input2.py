@@ -36,6 +36,7 @@ GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # 내부 풀업 �
 
 # falling edge를 검출하고자 GPIO.FALLING으로 설정할 경우, Press 시에 callback이 발생함
 GPIO.add_event_detect(BUTTON_GPIO, GPIO.FALLING, callback=button_callback, bouncetime=200)
+#GPIO.add_event_detect(BUTTON_GPIO, GPIO.RISING, callback=button_callback, bouncetime=200)
 # 둘다 반응
 
 # rasing/falling edge를 모두 검출하고자 GPIO.BOTH으로 설정할 경우, Press Release 시에도 callback이 발생함
