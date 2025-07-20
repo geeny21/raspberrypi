@@ -10,6 +10,7 @@
 '''
 import RPi.GPIO as GPIO
 import time
+import playsound
 import speech_recognition as sr
 from word2number import w2n
 
@@ -23,8 +24,8 @@ def speak(text):
     filename = "temp_tts.mp3"
     tts.save(filename)
     # mp3 파일 재생
-    #playsound.playsound(filename)
-    os.system("mpg123 "+filename)
+    playsound.playsound(filename)
+    #os.system("mpg123 "+filename)
 
     # 재생 후 임시 파일 삭제
     os.remove(filename)

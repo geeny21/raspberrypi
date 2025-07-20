@@ -20,7 +20,8 @@ with sr.Microphone() as source:
         print("숫자를 말하세요. (종료하려면 '종료'라고 말하세요)")
         audio = recognizer.listen(source)
         try:
-            text = recognizer.recognize_google(audio, language='ko-KR')
+            #text = recognizer.recognize_google(audio, language='ko-KR')
+            text = recognizer.recognize_google(audio, language='en-US')
             print("인식된 음성:", text)
             if text in ["종료", "끝", "그만"]:
                 print("프로그램을 종료합니다.")

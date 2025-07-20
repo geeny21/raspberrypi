@@ -40,6 +40,7 @@ pwm.start(0)
 with sr.Microphone() as source:
     while True:
         speak("숫자를 말하세요. 종료하려면 '종료'라고 말씀하세요.")
+        time.sleep(10)
         print("숫자를 말하세요. (종료하려면 '종료'라고 말하세요)")
         audio = recognizer.listen(source)
         try:
@@ -53,11 +54,13 @@ with sr.Microphone() as source:
                 number = w2n.word_to_num(text)
             except Exception:
                 speak("숫자를 정확히 말씀해 주세요.")
+                time.sleep(10)
                 print("에러: 숫자 인식 실패")
                 continue
             print("인식한 숫자값:", number)
             if number < 0 or number > 180:
                 speak("각도는 0도에서 180도 사이여야 합니다.")
+                time.sleep(10)
                 print("각도는 0에서 180 사이여야 합니다.")
                 continue
             servo(number)

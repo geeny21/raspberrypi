@@ -6,7 +6,7 @@ sudo apt-get install python3-gi
 sudo apt install mpg123 (playsound의 의존성)
 '''
 from gtts import gTTS
-#import playsound
+import playsound
 import os
 
 def speak(text):
@@ -15,8 +15,8 @@ def speak(text):
     filename = "temp_tts.mp3"
     tts.save(filename)
     # mp3 파일 재생
-    #playsound.playsound(filename)
-    os.system("mpg123 "+filename)
+    playsound.playsound(filename)
+    #os.system("mpg123 "+filename)
 
     # 재생 후 임시 파일 삭제
     os.remove(filename)
