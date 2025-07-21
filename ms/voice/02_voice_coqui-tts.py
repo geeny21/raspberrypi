@@ -1,5 +1,6 @@
 '''
 pip instll coqui-tts
+동작 안됨
 '''
 # from TTS.api import TTS
 # import os

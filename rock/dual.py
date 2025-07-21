@@ -19,7 +19,7 @@ hands = mp_hands.Hands(
 
 # Gesture recognition model
 #file = np.genfromtxt('/work/가위바위보/gesture_train_2.csv', delimiter=',')
-file = np.genfromtxt('/home/pi/work/raspberrypi/rock/gesture_train_2.csv', delimiter=',')
+file = np.genfromtxt('/home/pi/work/raspberrypi/rock/gesture_train_2.csv', delimiter=',') 
 angle = file[:,:-1].astype(np.float32)
 label = file[:, -1].astype(np.float32)
 knn = cv2.ml.KNearest_create()
